@@ -1,0 +1,111 @@
+\usepackage{minted}
+\usepackage{listings}
+\usepackage[labelsep=space]{caption}
+\setminted{
+	fontsize=\scriptsize,
+	linenos=true,
+	autogobble,
+}
+
+% Create a new environment for breaking code listings across pages.
+%https://tex.stackexchange.com/questions/304449/combine-minted-and-tcolorbox-for-code-from-file-inputminted
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{minted,skins,breakable,theorems,listings}
+\renewcommand{\theFancyVerbLine}{\sffamily \textcolor[rgb]{0.5,0.5,0.5}{\oldstylenums{\arabic{FancyVerbLine}}}}
+
+\newtcblisting[auto counter,number within=chapter, number format=\arabic]{code}[3]{
+	listing engine=minted,
+	minted language=#1,
+	minted options={autogobble,linenos,breaklines,numbersep=3mm,texcl=true},
+	listing only,
+	size=title,
+	arc=1.2mm,
+	breakable,
+	enhanced jigsaw,
+	colframe=egyptian!80,
+	coltitle=white,
+	boxrule=0.5mm,
+	colback=lightblue,
+	coltext=black!90,
+	title={\textbf{Code} \thetcbcounter: #2},
+	label=#3,
+	left=5mm,enhanced,
+	overlay={\begin{tcbclipinterior}\fill[electric] (frame.south west)
+			rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting[auto counter,number within=chapter, number format=\arabic]{test}[3]{
+	listing engine=minted,
+	minted language=#1,
+	minted options={autogobble,linenos,breaklines,numbersep=3mm,texcl=true},
+	listing only,
+	size=title,
+	arc=1.2mm,
+	breakable,
+	enhanced jigsaw,
+	colframe=blue!40,
+	coltitle=white,
+	boxrule=0.5mm,
+	colback=lightblue,
+	coltext=black!70,
+	title={\textbf{โค้ดทดสอบ} \thetcbcounter: #2},
+	label=#3,
+	left=5mm,enhanced,
+	overlay={\begin{tcbclipinterior}\fill[aliceblue] (frame.south west)
+			rectangle ([xshift=5mm]frame.north west);\end{tcbclipinterior}}
+}
+
+\newtcblisting[auto counter,number within=chapter, number format=\arabic]{syntax}[3]{
+	listing engine=minted,
+	minted language=#1,
+	minted options={autogobble,breaklines,numbersep=3mm,texcl=true,linenos=false},
+	listing only,
+	size=title,
+	arc=1.2mm,
+	breakable,
+	enhanced jigsaw,
+	colframe=dartmouth,
+	coltitle=white,
+	boxrule=0.5mm,
+	colback=white,
+	coltext=black!90,
+	title={\textbf{Syntax} \thetcbcounter: #2},
+	label=#3,
+}
+
+
+\newtcblisting[auto counter,number within=chapter, number format=\arabic]{cli}[1]{
+	listing engine=minted,
+	minted language=console,
+	minted options={autogobble,breaklines,numbersep=3mm,texcl=true,linenos=false},
+	listing only,
+	size=title,
+	arc=1.2mm,
+	breakable,
+	enhanced jigsaw,
+	colframe=black!30,
+	coltitle=black,
+	boxrule=0.5mm,
+	colback=white,
+	title={\textbf{CLI}},
+	label=#1,
+}
+
+\newtcblisting[auto counter,number within=chapter, number format=\arabic]{out}[1]{
+	listing engine=minted,
+	minted language=console,
+	minted options={autogobble,breaklines,numbersep=3mm,texcl=true,linenos=false},
+	listing only,
+	size=title,
+	arc=1.2mm,
+	breakable,
+	enhanced jigsaw,
+	colframe=black!60,
+	coltitle=white,
+	boxrule=0.5mm,
+	colback=white,
+	coltext=black!90,
+	title={\textbf{Output}},
+	label=#1,
+}
